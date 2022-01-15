@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": "airbnb-base",
+  "rules": {
+    "indent": ["error", 2],
+    "semi": "off",
+    "import/prefer-default-export": "off"
+  },
+}
