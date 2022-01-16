@@ -1,5 +1,5 @@
 import machine from '../machine'
-import { defaultState } from './utils/consts'
+import { defaultState } from '../../utils/test/machineUtil'
 
 describe('Machine Gererator', () => {
     it('Should properly generate machine', () => {

@@ -1,7 +1,7 @@
-import useMachine from '../../useMachine'
-import Machine from '../../machine'
+import useMachine from '../../finite-state-machine/useMachine'
+import Machine from '../../finite-state-machine/machine'
 import React, { useEffect } from 'react'
-import { defaultState } from './consts'
+import { defaultState } from './machineUtil'
 
 export default function TestComponent ({ shouldtransit, transitionEvent, state = defaultState }) {
     const [value, transition] = useMachine(Machine(state))

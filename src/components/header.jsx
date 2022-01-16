@@ -29,7 +29,7 @@ export default function Header (){
     return (
         <StyledHeader>
             <StyledImage className='left' src='https://cdn.nba.com/manage/2021/10/GettyImages-1228132003.png' alt='nba-logo' />
-            <StyledH1>Welcome to My NBA Teams Lineup</StyledH1>
+            <StyledH1>Welcome to My NBA Team Lineup</StyledH1>
             <StyledImage className='right' src='https://cdn.nba.com/manage/2021/10/GettyImages-1228132003.png' alt='nba-logo' />
         </StyledHeader>
 )

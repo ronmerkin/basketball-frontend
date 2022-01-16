@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --runInBand",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "lint:fix": "npm run lint --fix",
@@ -47,7 +47,8 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-flowtype": "^7.0.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-react-hooks": "^4.2.1-rc.0-next-51947a14b-20220113"
+    "jest-watch-typeahead": "^0.6.5",
+    "nock": "^13.2.2"
   },
   "jest": {
     "testMatch": [

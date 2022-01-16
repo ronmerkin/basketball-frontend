@@ -7,6 +7,7 @@ const StyledUl = styled.ul`
   padding-left: 0;
   text-align: left;
 `
+
 export default function TeamRoster({ team }) {
     const renderPlayers = () => {
         return team.players && team.players.map(player => {
@@ -19,7 +20,7 @@ export default function TeamRoster({ team }) {
         <div>
             <TeamHeader name={team.full_name}/>
             <StyledUl className={`${team.name}-roster`}>
-                {renderPlayers()}
+              {renderPlayers()}
             </StyledUl>
         </div>
     )

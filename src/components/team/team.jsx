@@ -16,8 +16,16 @@ const options = TEAMS.map(team => {
   }
 })
 
+const StyledDiv = styled.div`
+  //background: #fff;
+  //height: 375px;
+  border-radius: 10px;
+`
 const StyledSelect = styled(Select)`
   margin-bottom: 20px;
+`
+const StyledSpinnerDiamond = styled(SpinnerDiamond)`
+  margin-top: 100px;
 `
 
 export default function Team({ testId }) {
@@ -26,28 +34,36 @@ export default function Team({ testId }) {
   const [currTeam, setTeam] = useState({})
   const [errMsg, setErrMsg] = useState('')
   useEffect(() => {
-    transition('switch')
-  }, [])
-  // TODO: handle state where we are on succeed and try to change team
-  // TODO: understand how to do transition twice otherwise the loader will always load when the component renders
+    if (Object.keys(currTeam).length) {
+      transition('resolve')
+    }
+  }, [currTeam])
+  useEffect(() => {
+    if (errMsg) {
+      transition('reject')
+    }
+  }, [errMsg])
   const handleSelect = async (selectedTeam) => {
+    transition('switch')
+    // TODO: ask tal if that shows a capability of the spinner or remove
+    await new Promise((resolve) => {
+      setTimeout(resolve, 3000)
+    })
     try {
       const data = await apiCall('GET', `teams?team=${selectedTeam.value}`)
       if (data && data.length) {
         setTeam(data[0])
-        transition('resolve')
       }
     } catch (err) {
       setErrMsg(err)
-      transition('reject')
     }
   }
   return (
-    <div data-testid={testId}>
+    <StyledDiv data-testid={testId}>
       {currState !== 'success' && <StyledSelect className={`teams-select-${testId}`} options={options} onChange={handleSelect} placeholder='Select a team' />}
-      {currState === 'fetch' && <SpinnerDiamond className='spinner'/>}
+      {currState === 'fetch' && <StyledSpinnerDiamond className='spinner' size='100' secondaryColor='#fff'/>}
       {currState === 'success' && <TeamInfo team={currTeam}/>}
       {currState === 'failure' && <Error message={errMsg}/>}
-    </div>
+    </StyledDiv>
   )
 }
