@@ -6,27 +6,32 @@ export const firstTeamData = {
         {
             name: 'Nicolas Batum',
             age:29,
-            position: 'PG'
+            position: 'PG',
+            profile: 'https://randomuser.me/api/portraits/med/men/1.jpg'
         },
         {
             name: 'Kent Bazemore',
             age:27,
-            position: 'SG'
+            position: 'SG',
+            profile: 'https://randomuser.me/api/portraits/med/men/2.jpg'
         },
         {
             name: 'Darius Bazley',
             age:27,
-            position: 'SF'
+            position: 'SF',
+            profile: 'https://randomuser.me/api/portraits/med/men/3.jpg'
         },
         {
             name: 'Bradley Beal',
             age:30,
-            position: 'PF'
+            position: 'PF',
+            profile: 'https://randomuser.me/api/portraits/med/men/4.jpg'
         },
         {
             name: 'Malik Beasley',
             age:32,
-            position: 'C'
+            position: 'C',
+            profile: 'https://randomuser.me/api/portraits/med/men/5.jpg'
         }
     ]
 }
