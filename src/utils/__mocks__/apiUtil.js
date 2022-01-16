@@ -63,6 +63,7 @@ export const getSecondTeamData = {
     ]
 }
 
+// TODO: maybe replace with msw package
 const apiCall = jest.fn()
 
 export default apiCall
