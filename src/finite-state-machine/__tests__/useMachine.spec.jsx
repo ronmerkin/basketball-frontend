@@ -36,7 +36,7 @@ describe('Use Machine Hook', () => {
         // act
         render(<TestComponent shouldtransit transitionEvent='switch' state={currState}/>)
         // assert
-        expect(screen.queryByText(/(off|on)/)).toBeNull()
+        expect(await screen.findByText('on')).toBeInTheDocument()
     })
     it('Should retreive off state after a double switch', async () => {
         // arrange

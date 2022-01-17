@@ -1,5 +1,5 @@
 import React from 'react'
-import Team from './team/team'
+import Team from './team/Team'
 import styled from 'styled-components'
 
 const StyledGrid = styled.div`

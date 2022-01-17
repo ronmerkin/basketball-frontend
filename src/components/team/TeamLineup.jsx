@@ -1,6 +1,6 @@
 import React from 'react'
-import TeamHeader from './teamHeader'
-import Player from './player'
+import TeamHeader from './TeamHeader'
+import Player from './Player'
 import styled from 'styled-components'
 
 const StyledUl = styled.ul`
@@ -8,7 +8,7 @@ const StyledUl = styled.ul`
   text-align: left;
 `
 
-export default function TeamRoster({ team }) {
+export default function TeamLineup({ team }) {
     const renderPlayers = () => {
         return team.players && team.players.map(player => {
             return (
@@ -19,7 +19,7 @@ export default function TeamRoster({ team }) {
     return (
         <div>
             <TeamHeader name={team.full_name}/>
-            <StyledUl className={`${team.name}-roster`}>
+            <StyledUl className={`${team.name}-lineup`}>
               {renderPlayers()}
             </StyledUl>
         </div>

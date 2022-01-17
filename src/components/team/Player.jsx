@@ -7,6 +7,7 @@ const StyledLi = styled.li`
   display: flex;
   align-items: center;
   gap: 20px;
+  padding-left: 10px;
 `
 const StyledPlayerName = styled.div`
   font-weight: bold;

@@ -1,6 +1,6 @@
 import './App.css'
-import Lineups from './components/lineups'
-import Header from './components/header'
+import Lineups from './components/Lineups'
+import Header from './components/Header'
 
 function App() {
   return (

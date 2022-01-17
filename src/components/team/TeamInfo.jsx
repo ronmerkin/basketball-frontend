@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import TeamRoster from './teamRoster'
+import TeamLineup from './TeamLineup'
 
 const StyledGrid = styled.div`
   display: grid;
   grid-auto-rows: 120px 1fr;
   width: 100%;
-  padding: 10px;
   border-radius: 10px;
   border: 1px solid #2A2C2F;
   box-shadow: 1px 1px 6px 1px #000000;
@@ -22,7 +21,7 @@ export default function TeamInfo({team}) {
     return (
         <StyledGrid>
             <StyledImage src={team.logo} alt="Logo" />
-            <TeamRoster team={team}/>
+            <TeamLineup team={team}/>
         </StyledGrid>
 
     )

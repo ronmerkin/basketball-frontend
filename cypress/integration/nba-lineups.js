@@ -12,7 +12,7 @@ describe('NBA lineup', () => {
   it('Should select teams', () => {
     cy.get('.teams-select-team-container-1 input').type('Celtics{enter}')
     cy.get('.teams-select-team-container-2 input').type('Lakers{enter}')
-    cy.get('.celtics-roster li').should('have.length', 5)
-    cy.get('.lakers-roster li').should('have.length', 5)
+    cy.get('.celtics-lineup li').should('have.length', 5)
+    cy.get('.lakers-lineup li').should('have.length', 5)
   })
 })

@@ -19,10 +19,18 @@ const stateMachine = {
       },
     },
     success: {
-      type: 'final',
+      transitions: {
+        switch: {
+          target: 'fetch'
+        }
+      }
     },
     failure: {
-      type: 'final',
+      transitions: {
+        switch: {
+          target: 'fetch'
+        }
+      },
     },
   },
 }
