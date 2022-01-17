@@ -14,6 +14,7 @@ const StyledGridItem = styled.div`
   align-items: center;
   color: #fff;
   font-size: 40px;
+  font-weight: bold;
 `
 
 export default function Lineups() {

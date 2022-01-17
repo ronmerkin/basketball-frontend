@@ -29,8 +29,7 @@ const StyledSpinnerDiamond = styled(SpinnerDiamond)`
 `
 
 export default function Team({ testId }) {
-  const machine = Machine(stateMachine)
-  const [currState, transition] = useMachine(machine)
+  const [currState, transition] = useMachine(Machine(stateMachine))
   const [currTeam, setTeam] = useState({})
   const [errMsg, setErrMsg] = useState('')
   useEffect(() => {
@@ -60,7 +59,7 @@ export default function Team({ testId }) {
   }
   return (
     <StyledDiv data-testid={testId}>
-      {currState !== 'success' && <StyledSelect className={`teams-select-${testId}`} options={options} onChange={handleSelect} placeholder='Select a team' />}
+      {currState === 'idle' && <StyledSelect className={`teams-select-${testId}`} options={options} onChange={handleSelect} placeholder='Select a team' />}
       {currState === 'fetch' && <StyledSpinnerDiamond className='spinner' size='100' secondaryColor='#fff'/>}
       {currState === 'success' && <TeamInfo team={currTeam}/>}
       {currState === 'failure' && <Error message={errMsg}/>}

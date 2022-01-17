@@ -2,6 +2,7 @@ import React from 'react'
 const FINAL_DEFINITION = 'final'
 
 function Machine(machineProps) {
+    // TODO: error handling + adapt tests
     const machine = {
         value: machineProps.initialState,
         transition: (currState, event) => {
@@ -9,7 +10,8 @@ function Machine(machineProps) {
                 return
             }
             const currentDefinition = machineProps.states[currState]
-            if (currentDefinition && currentDefinition.type && currentDefinition.type === FINAL_DEFINITION) {
+            const currentDefinitionType = currentDefinition && currentDefinition.type
+            if (currentDefinitionType && currentDefinitionType === FINAL_DEFINITION) {
                 return
             }
             const destinationTransition = currentDefinition.transitions && currentDefinition.transitions[event]
