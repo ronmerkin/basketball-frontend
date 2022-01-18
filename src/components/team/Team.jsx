@@ -58,7 +58,6 @@ export default function Team({ testId }) {
     })
     await fetchTeam(selectedTeam.value)
   }
-  console.log('cu: ', currState)
   return (
     <StyledDiv data-testid={testId}>
       <StyledSelect className={`teams-select-${testId}`} options={options} onChange={handleSelect} placeholder='Select a team' />

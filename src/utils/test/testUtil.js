@@ -2,6 +2,9 @@ import React from 'react'
 import { render } from "@testing-library/react";
 const nock = require('nock')
 
+const SUCCESS_STATUS_CODE = 200
+const ERROR_STATUS_CODE = 404
+
 const firstTeamData = {
     full_name: 'Golden State Warriors',
     logo: 'https://content.sportslogos.net/logos/6/235/thumbs/23531522020.gif',
@@ -58,19 +61,21 @@ export function selectUtil ({ options, value, onChange }) {
     )
 }
 
-export function setup (Component, resolveError) {
+export function setup (Component, team, resolveError) {
     const defaultReplyHeaders = { 'access-control-allow-origin': '*' }
     const basePath = 'http://localhost:8000'
+    const teamsRoute = '/teams?team='
     if (resolveError) {
+        const errorMessage = 'No team Found'
         nock(basePath)
           .defaultReplyHeaders(defaultReplyHeaders)
-          .get('/teams?team=FAKE')
-          .reply(404, 'No team Found')
+          .get(`${teamsRoute}${team}`)
+          .reply(ERROR_STATUS_CODE, errorMessage)
     } else {
         nock(basePath)
           .defaultReplyHeaders(defaultReplyHeaders)
-          .get('/teams?team=Warriors')
-          .reply(200, [firstTeamData])
+          .get(`${teamsRoute}${team}`)
+          .reply(SUCCESS_STATUS_CODE, [firstTeamData])
     }
     render(Component)
 }

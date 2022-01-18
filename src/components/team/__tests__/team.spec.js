@@ -25,7 +25,7 @@ describe('Team', () => {
         const team = 'Warriors'
         // act
         act(() => {
-            setup(<Team />)
+            setup(<Team />, team)
             selectTeam(team)
         })
         // assert
@@ -40,7 +40,7 @@ describe('Team', () => {
         const teamPlayer = 'Nicolas Batum'
         // act
         await act(async () => {
-            setup(<Team />)
+            setup(<Team />, team)
             await selectTeam(team)
             
         })
@@ -57,7 +57,7 @@ describe('Team', () => {
         const team = 'FAKE'
         const errorMessage = /No team Found/
         act(() => {
-            setup(<Team />, true)
+            setup(<Team />, team, true)
             selectTeam(team)
             
         })

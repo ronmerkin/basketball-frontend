@@ -1,11 +1,11 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 
 function useMachine(machine) {
     const [value, setValue] = useState(machine.initialValue)
-    const transition = useCallback((event) => {
+    function transition (event) {
         const newValue = machine.transition(value, event)
         setValue(newValue)
-    }, [value])
+    }
     return [value, transition]
 }
 

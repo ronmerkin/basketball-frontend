@@ -1,7 +1,7 @@
 import React from 'react'
 import {render, fireEvent, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
-import TestComponent from '../../utils/test/testComponent'
+import TestComponent from '../../utils/test/TestComponent'
 
 describe('Use Machine Hook', () => {
     it('Should be able to receive existing state value', async () => {

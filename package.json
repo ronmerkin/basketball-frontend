@@ -52,7 +52,7 @@
   },
   "jest": {
     "testMatch": [
-      "**/__tests__/*.spec.{js,jsx}"
+      "**/__tests__/*.spec.js"
     ]
   }
 }
