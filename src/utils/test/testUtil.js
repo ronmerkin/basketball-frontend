@@ -61,21 +61,22 @@ export function selectUtil ({ options, value, onChange }) {
     )
 }
 
-export function setup (Component, team, resolveError) {
-    const defaultReplyHeaders = { 'access-control-allow-origin': '*' }
+function nockCreator (route, responseCode, responseMessage) {
     const basePath = 'http://localhost:8000'
+    const defaultReplyHeaders = { 'access-control-allow-origin': '*' }
+    nock(basePath)
+      .defaultReplyHeaders(defaultReplyHeaders)
+      .get(route)
+      .reply(responseCode, responseMessage)
+}
+
+export function setup (Component, team, resolveError) {
     const teamsRoute = '/teams?team='
     if (resolveError) {
         const errorMessage = 'No team Found'
-        nock(basePath)
-          .defaultReplyHeaders(defaultReplyHeaders)
-          .get(`${teamsRoute}${team}`)
-          .reply(ERROR_STATUS_CODE, errorMessage)
+        nockCreator(`${teamsRoute}${team}`, ERROR_STATUS_CODE, errorMessage)
     } else {
-        nock(basePath)
-          .defaultReplyHeaders(defaultReplyHeaders)
-          .get(`${teamsRoute}${team}`)
-          .reply(SUCCESS_STATUS_CODE, [firstTeamData])
+        nockCreator(`${teamsRoute}${team}`, SUCCESS_STATUS_CODE, [firstTeamData])
     }
     render(Component)
 }

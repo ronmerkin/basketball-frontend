@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import TeamInfo from './TeamInfo'
 import { TEAMS } from '../../utils/consts'
 import { Machine, useMachine } from '../../finite-state-machine'
-import stateMachine from '../../utils/machine'
+import fetchMachine, { FETCH_TRANSITIONS, FETCH_STATES } from '../../utils/fetch.machine'
 import { SpinnerDiamond } from 'spinners-react'
 import apiCall from '../../utils/apiUtil'
 import Error from './Error'
@@ -27,17 +27,17 @@ const StyledSpinnerDiamond = styled(SpinnerDiamond)`
 `
 
 export default function Team({ testId }) {
-  const [currState, transition] = useMachine(Machine(stateMachine))
+  const [currState, transition] = useMachine(Machine(fetchMachine))
   const [currTeam, setTeam] = useState({})
   const [errMsg, setErrMsg] = useState('')
   useEffect(() => {
     if (Object.keys(currTeam).length) {
-      transition('resolve')
+      transition(FETCH_TRANSITIONS.RESOLVE)
     }
   }, [currTeam])
   useEffect(() => {
     if (errMsg) {
-      transition('reject')
+      transition(FETCH_TRANSITIONS.REJECT)
     }
   }, [errMsg])
   const fetchTeam = async (selectedTeam) => {
@@ -51,7 +51,7 @@ export default function Team({ testId }) {
     }
   }
   const handleSelect = async (selectedTeam) => {
-    transition('switch')
+    transition(FETCH_TRANSITIONS.SWITCH)
     // Adding this set timeout in order to show the fetch state
     await new Promise((resolve) => {
       setTimeout(resolve, 3000)
@@ -61,9 +61,9 @@ export default function Team({ testId }) {
   return (
     <StyledDiv data-testid={testId}>
       <StyledSelect className={`teams-select-${testId}`} options={options} onChange={handleSelect} placeholder='Select a team' />
-      {currState === 'fetch' && <StyledSpinnerDiamond className='spinner' size='100' secondaryColor='#fff'/>}
-      {currState === 'success' && <TeamInfo team={currTeam}/>}
-      {currState === 'failure' && <Error message={errMsg}/>}
+      {currState === FETCH_STATES.FETCH && <StyledSpinnerDiamond className='spinner' size='100' secondaryColor='#fff'/>}
+      {currState === FETCH_STATES.SUCCESS && <TeamInfo team={currTeam}/>}
+      {currState === FETCH_STATES.FAILURE && <Error message={errMsg}/>}
     </StyledDiv>
   )
 }
