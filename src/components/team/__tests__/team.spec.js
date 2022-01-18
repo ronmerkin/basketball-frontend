@@ -1,6 +1,5 @@
 import React from 'react'
 import { act, fireEvent, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
 import Team from '../Team'
 import { setup } from '../../../utils/test/testUtil'
 
