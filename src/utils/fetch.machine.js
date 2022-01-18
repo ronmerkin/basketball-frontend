@@ -1,5 +1,3 @@
-// TODO: SAVE ENUMS OF TRANSITIONS e.g. IDLE: 'idle'
-// TODO: change to fetch machine
 
 export const FETCH_TRANSITIONS = {
   SWITCH: 'switch',
