@@ -21,9 +21,6 @@ function selectTeam (value) {
 async function setupAndTeamSelection (team, resolveError) {
     setup(<Team />, team, resolveError)
     await selectTeam(team)
-    await new Promise((resolve) => {
-        setTimeout(resolve, 3000)
-    })
 }
 
 describe('Team', () => {

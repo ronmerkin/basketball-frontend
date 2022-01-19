@@ -53,9 +53,6 @@ export default function Team({ testId }) {
   const handleSelect = async (selectedTeam) => {
     transition(FETCH_TRANSITIONS.SWITCH)
     // Adding this set timeout in order to show the fetch state
-    await new Promise((resolve) => {
-      setTimeout(resolve, 3000)
-    })
     await fetchTeam(selectedTeam.value)
   }
   return (
