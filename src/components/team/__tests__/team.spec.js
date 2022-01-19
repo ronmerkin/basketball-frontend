@@ -18,50 +18,38 @@ function selectTeam (value) {
     })
 }
 
-describe('Team', () => {
-    it('Should render select and spinner', async () => {
-        // arrange
-        const team = 'Warriors'
-        // act
-        act(() => {
-            setup(<Team />, team)
-            selectTeam(team)
-        })
-        // assert
-        // verify spinner exists
-        expect(getComputedStyle(document.querySelector(SPINNER_CLASS))).not.toBeNull()
-
+async function setupAndTeamSelection (team, resolveError) {
+    setup(<Team />, team, resolveError)
+    await selectTeam(team)
+    await new Promise((resolve) => {
+        setTimeout(resolve, 3000)
     })
-    it('Should Choose a team', async () => {
+}
+
+describe('Team', () => {
+    it('Should find spinner and render selected team', async () => {
         // arrange
         const team = 'Warriors'
         const fullTeamName = /Golden State Warriors/
         const teamPlayer = 'Nicolas Batum'
+    
         // act
         await act(async () => {
-            setup(<Team />, team)
-            await selectTeam(team)
-            
-        })
-        await new Promise((resolve) => {
-            setTimeout(resolve, 3000)
+            await setupAndTeamSelection(team)
         })
         // assert
+        // verify spinner exists
+        expect(getComputedStyle(document.querySelector(SPINNER_CLASS))).not.toBeNull()
         expect(await screen.findByText(fullTeamName)).toBeInTheDocument()
         expect(await screen.findByText(teamPlayer)).toBeInTheDocument()
     })
     it('Choose a non existing team', async () => {
         // arrange
-        // act
         const team = 'FAKE'
         const errorMessage = /No team Found/
-        act(() => {
-            setup(<Team />, team, true)
-            selectTeam(team)
-            
-        })
-        await new Promise((resolve) => {
-            setTimeout(resolve, 3000)
+        // act
+        await act(async () => {
+            await setupAndTeamSelection(team, true)
         })
         // assert
         expect(await screen.findByText(errorMessage)).toBeInTheDocument()
